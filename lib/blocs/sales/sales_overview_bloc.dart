@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lojahub/blocs/events/sales_events.dart';
 import 'package:lojahub/blocs/states/sales_states.dart';
+import 'package:lojahub/models/sales/UserSalesModel.dart';
 import 'package:lojahub/repositories/sales_repository.dart';
 
 class SalesOverviewBloc extends Bloc<SalesEvents, SalesState> {
@@ -9,13 +10,13 @@ class SalesOverviewBloc extends Bloc<SalesEvents, SalesState> {
     on((event, emit) async {
       // Default Loading
       emit(SalesLoadingState());
-
       // Searching Data
       try {
-        final salesOverview = await _salesRepository.getSalesOverview();
-        print(salesOverview);
-        emit(SalesLoadedState(salesOverview));
+        final UserSalesModel userSales =
+            await _salesRepository.getSalesOverview();
+        emit(SalesLoadedState(userSales));
       } catch (e) {
+        print("Error ${e.toString()}");
         // Error Validation
         emit(SalesErrorState(e.toString()));
       }

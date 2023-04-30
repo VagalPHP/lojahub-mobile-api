@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:lojahub/models/sales/SalesOverviewModel.dart';
+import 'package:lojahub/models/sales/UserSalesModel.dart';
 
 abstract class SalesState extends Equatable {}
 
@@ -11,10 +11,10 @@ class SalesLoadingState extends SalesState {
 
 // DATA LOADED STATE
 class SalesLoadedState extends SalesState {
-  SalesLoadedState(this.salesOverview);
-  final SalesOverviewModel salesOverview;
+  SalesLoadedState(this.userSales);
+  final UserSalesModel userSales;
   @override
-  List<Object?> get props => [salesOverview];
+  List<Object?> get props => [userSales];
 }
 
 // DATA ERROR LOADING STATE

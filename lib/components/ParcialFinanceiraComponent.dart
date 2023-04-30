@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ParcialFinanceiraComponent extends StatelessWidget {
-  const ParcialFinanceiraComponent({
-    super.key,
-  });
+  const ParcialFinanceiraComponent({super.key, this.salesAmount});
+  final String? salesAmount;
 
   @override
   Widget build(BuildContext context) {
@@ -13,8 +12,8 @@ class ParcialFinanceiraComponent extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text("R\$ 127.109,76",
-                style: TextStyle(
+            Text("R\$ $salesAmount",
+                style: const TextStyle(
                   fontSize: 35,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,

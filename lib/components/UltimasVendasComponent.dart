@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:lojahub/models/sales/UserSalesModel.dart';
 
 class UltimasVendasComponent extends StatelessWidget {
   const UltimasVendasComponent({
     super.key,
+    this.lastSalesList,
   });
 
+  final List<LastSale>? lastSalesList;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -22,57 +25,32 @@ class UltimasVendasComponent extends StatelessWidget {
           padding: const EdgeInsets.only(top: 18),
           child: AspectRatio(
             aspectRatio: 16 / 8,
-            child: ListView(
-              scrollDirection: Axis.vertical,
-              shrinkWrap: true,
-              children: <Widget>[
-                Container(
-                  margin: const EdgeInsets.only(bottom: 10),
-                  child: ListTile(
-                    leading: Image.asset('assets/images/api_logos/1.png'),
-                    title: const Text(
-                      'Mercado Livre',
-                      style: TextStyle(fontWeight: FontWeight.bold),
+            child: ListView.builder(
+                itemCount: lastSalesList?.length ?? 0,
+                itemBuilder: (context, index) {
+                  final lastSale = lastSalesList![index];
+                  return Container(
+                    margin: const EdgeInsets.only(bottom: 10),
+                    child: ListTile(
+                      leading: SizedBox(
+                        width: 26,
+                        height: 26,
+                        child: Image.network(
+                          lastSale.marketplaceLogo,
+                        ),
+                      ),
+                      title: Text(
+                        lastSale.marketplaceName,
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      subtitle: Text("${lastSale.mktSalesCount} transações"),
+                      trailing: Text(
+                        "R\$ ${lastSale.getFormatedMktSalesAmount()}",
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
                     ),
-                    subtitle: const Text("40 transações"),
-                    trailing: const Text(
-                      "R\$ 89.615,32",
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(bottom: 10),
-                  child: ListTile(
-                    leading: Image.asset('assets/images/api_logos/8.png'),
-                    title: const Text(
-                      'Shopee',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    subtitle: const Text("15 transações"),
-                    trailing: const Text(
-                      "R\$ 3.534,80",
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(bottom: 10),
-                  child: ListTile(
-                    leading: Image.asset('assets/images/api_logos/8.png'),
-                    title: const Text(
-                      'Shopee',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    subtitle: const Text("15 transações"),
-                    trailing: const Text(
-                      "R\$ 3.534,80",
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+                  );
+                }),
           ),
         ),
       ],
