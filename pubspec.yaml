@@ -31,6 +31,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc:
+  bloc: ^8.0.3
   http:
   equatable:
   intl: any

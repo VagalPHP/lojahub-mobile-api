@@ -10,10 +10,13 @@ class SalesOverviewBloc extends Bloc<SalesEvents, SalesState> {
     on((event, emit) async {
       // Default Loading
       emit(SalesLoadingState());
+    });
+
+    on<LoadSalesOverviewEvent>((event, emit) async {
       // Searching Data
       try {
         final UserSalesModel userSales =
-            await _salesRepository.getSalesOverview();
+            await _salesRepository.getSalesOverview(event.monthReference);
         emit(SalesLoadedState(userSales));
       } catch (e) {
         print("Error ${e.toString()}");

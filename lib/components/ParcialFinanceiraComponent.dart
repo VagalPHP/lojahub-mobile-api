@@ -19,7 +19,7 @@ class ParcialFinanceiraComponent extends StatelessWidget {
                   color: Colors.white,
                 )),
             const Text(
-              "Parcial Financeira",
+              "Parcial Financeira (Mensal)",
               style: TextStyle(
                 fontSize: 15,
                 color: Color.fromRGBO(255, 255, 255, 0.8),
@@ -27,13 +27,18 @@ class ParcialFinanceiraComponent extends StatelessWidget {
             ),
           ],
         ),
-        const CircleAvatar(
-          backgroundColor: Color.fromRGBO(16, 48, 79, 1),
-          radius: 35,
-          child: Icon(
-            Icons.supervised_user_circle,
-            color: Colors.white,
-            size: 50,
+        ClipRRect(
+          // Avatar quadrado
+          borderRadius: BorderRadius.circular(10.0), //or 15.0
+          child: Container(
+            height: 47,
+            width: 47,
+            color: const Color.fromRGBO(16, 48, 79, 1),
+            child: const Icon(
+              Icons.supervised_user_circle,
+              color: Colors.white,
+              size: 50,
+            ),
           ),
         ),
       ],

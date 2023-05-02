@@ -3,14 +3,19 @@ import 'dart:ffi';
 import 'package:intl/intl.dart';
 
 class UserSalesModel {
+  final int monthReference;
   final double salesAmount;
   final SalesOverview salesOverview;
   final List<LastSale> lastSales;
+  final List<MonthsFilter> monthsFilter;
 
-  UserSalesModel(
-      {required this.salesAmount,
-      required this.salesOverview,
-      required this.lastSales});
+  UserSalesModel({
+    required this.monthReference,
+    required this.salesAmount,
+    required this.salesOverview,
+    required this.lastSales,
+    required this.monthsFilter,
+  });
 
   String getFormatedSalesAmount() {
     final oCcy = NumberFormat("#,##0.00", "pt");
@@ -59,5 +64,22 @@ class LastSale {
   String getFormatedMktSalesAmount() {
     final oCcy = NumberFormat("#,##0.00", "pt");
     return oCcy.format(mktSalesAmount);
+  }
+}
+
+class MonthsFilter {
+  final int monthIndex;
+  final String month;
+  final String year;
+
+  MonthsFilter(
+      {required this.monthIndex, required this.month, required this.year});
+
+  factory MonthsFilter.fromJson(Map<String, dynamic> monthFilter) {
+    return MonthsFilter(
+      monthIndex: monthFilter["monthIndex"],
+      month: monthFilter["month"],
+      year: monthFilter["year"],
+    );
   }
 }

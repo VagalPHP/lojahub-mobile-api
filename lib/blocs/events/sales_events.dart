@@ -7,6 +7,10 @@ abstract class SalesEvents extends Equatable {
 }
 
 class LoadSalesOverviewEvent extends SalesEvents {
+  const LoadSalesOverviewEvent({required this.monthReference});
+
+  final int? monthReference;
+
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [monthReference];
 }

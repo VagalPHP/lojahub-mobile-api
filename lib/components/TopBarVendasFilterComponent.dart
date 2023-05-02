@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lojahub/blocs/events/sales_events.dart';
+import 'package:lojahub/blocs/sales/sales_overview_bloc.dart';
+import 'package:lojahub/models/sales/UserSalesModel.dart';
 
 @immutable
 class TopBarVendasFilterComponent extends StatelessWidget {
   const TopBarVendasFilterComponent({
     super.key,
+    required this.monthReference,
+    required this.monthsFilter,
   });
 
-  get onChanged => null;
+  final int monthReference;
+  final List<MonthsFilter> monthsFilter;
 
   @override
   Widget build(BuildContext context) {
@@ -14,26 +21,24 @@ class TopBarVendasFilterComponent extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Image.network(
-          'http://10.0.2.2:8888/images/apis_logo/7.png',
-          height: 31,
-          width: 29,
-          fit: BoxFit.fitWidth,
-        ),
         Padding(
-          padding: const EdgeInsets.only(left: 7),
-          child: Row(
-            children: const [
-              Padding(
-                padding: EdgeInsets.only(right: 4),
-                child: Text(
-                  "Mês:",
-                  style: TextStyle(
-                      color: Color.fromRGBO(158, 166, 190, 1), fontSize: 16),
-                ),
-              ),
-              MonthFilterComponent(),
-            ],
+          padding: const EdgeInsets.only(right: 7),
+          child: Flexible(
+            flex: 1,
+            child: Image.network(
+              'http://10.0.2.2:8888/images/apis_logo/7.png',
+              height: 31,
+              width: 29,
+              fit: BoxFit.fitWidth,
+            ),
+          ),
+        ),
+        Flexible(
+          fit: FlexFit.loose,
+          flex: 3,
+          child: MonthFilterComponent(
+            monthReference: monthReference,
+            monthsFilter: monthsFilter,
           ),
         ),
       ],
@@ -41,27 +46,25 @@ class TopBarVendasFilterComponent extends StatelessWidget {
   }
 }
 
-class MonthFilterComponent extends StatefulWidget {
+class MonthFilterComponent extends StatelessWidget {
   const MonthFilterComponent({
     super.key,
+    required this.monthReference,
+    required this.monthsFilter,
   });
 
-  @override
-  State<MonthFilterComponent> createState() => _MonthFilterComponentState();
-}
+  final int monthReference;
+  final List<MonthsFilter> monthsFilter;
 
-class _MonthFilterComponentState extends State<MonthFilterComponent> {
-  int selectedValue = 4;
   @override
   Widget build(BuildContext context) {
     return DropdownButtonHideUnderline(
       child: DropdownButton(
-        items: dropdownItems,
-        value: selectedValue,
-        onChanged: (int? value) {
-          setState(() {
-            selectedValue = value!;
-          });
+        items: getDropDownItems(monthsFilter),
+        value: monthReference,
+        onChanged: (int? newMonthReference) {
+          BlocProvider.of<SalesOverviewBloc>(context)
+              .add(LoadSalesOverviewEvent(monthReference: newMonthReference));
         },
         alignment: Alignment.center,
         style: const TextStyle(
@@ -78,10 +81,22 @@ class _MonthFilterComponentState extends State<MonthFilterComponent> {
 
 List<DropdownMenuItem<int>> get dropdownItems {
   List<DropdownMenuItem<int>> menuItems = [
-    const DropdownMenuItem(value: 1, child: Text("Janeiro")),
-    const DropdownMenuItem(value: 2, child: Text("Fevereiro")),
-    const DropdownMenuItem(value: 3, child: Text("Março")),
-    const DropdownMenuItem(value: 4, child: Text("Abril")),
+    const DropdownMenuItem(value: 1, child: Text("Janeiro 2023")),
+    const DropdownMenuItem(value: 2, child: Text("Fevereiro 2023")),
+    const DropdownMenuItem(value: 3, child: Text("Março 2023")),
+    const DropdownMenuItem(value: 4, child: Text("Abril 2023")),
+    const DropdownMenuItem(value: 5, child: Text("Dezembro 2023")),
   ];
+  return menuItems;
+}
+
+List<DropdownMenuItem<int>> getDropDownItems(List<MonthsFilter> monthsFilter) {
+  List<DropdownMenuItem<int>> menuItems = [];
+  menuItems.addAll(monthsFilter.map((monthFilter) {
+    return DropdownMenuItem(
+      value: monthFilter.monthIndex,
+      child: Text("${monthFilter.month} ${monthFilter.year}"),
+    );
+  }));
   return menuItems;
 }

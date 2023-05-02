@@ -14,7 +14,7 @@ class UltimasVendasComponent extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text(
-          "Últimas Vendas",
+          "Últimas Vendas (Do dia)",
           style: TextStyle(
             fontWeight: FontWeight.bold,
             color: Color.fromRGBO(16, 48, 79, 1),
