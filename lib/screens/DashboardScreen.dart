@@ -36,8 +36,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   child: Container(
                     height: MediaQuery.of(context).size.height,
                     width: MediaQuery.of(context).size.width,
-                    decoration: const BoxDecoration(
-                      color: Color.fromRGBO(16, 48, 79, 1),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).primaryColor,
                     ),
                     child: const Center(
                       child: CircularProgressIndicator(
@@ -58,8 +58,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     Container(
                       height: 280,
                       width: MediaQuery.of(context).size.width,
-                      decoration: const BoxDecoration(
-                        color: Color.fromRGBO(16, 48, 79, 1),
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).primaryColor,
                       ),
                     ),
                     SizedBox(
@@ -92,20 +92,21 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                 padding: const EdgeInsets.only(top: 14),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: const [
+                                  children: [
                                     Padding(
-                                      padding: EdgeInsets.only(bottom: 20),
+                                      padding:
+                                          const EdgeInsets.only(bottom: 20),
                                       child: Text(
                                         "Atividade",
                                         style: TextStyle(
-                                          color: Color.fromRGBO(16, 48, 79, 1),
+                                          color: Theme.of(context).primaryColor,
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,
                                         ),
                                         textAlign: TextAlign.left,
                                       ),
                                     ),
-                                    MinhasVendasComponent(),
+                                    const MinhasVendasComponent(),
                                   ],
                                 ),
                               ),

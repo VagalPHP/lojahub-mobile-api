@@ -33,7 +33,7 @@ class ParcialFinanceiraComponent extends StatelessWidget {
           child: Container(
             height: 47,
             width: 47,
-            color: const Color.fromRGBO(16, 48, 79, 1),
+            color: Theme.of(context).primaryColor,
             child: const Icon(
               Icons.supervised_user_circle,
               color: Colors.white,

@@ -42,9 +42,9 @@ class VendasCountByStatusPainelComponent extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 18),
                   child: Row(
                     children: [
-                      const Icon(
+                      Icon(
                         Icons.circle,
-                        color: Color.fromRGBO(16, 48, 79, 1),
+                        color: Theme.of(context).primaryColor,
                         size: 10,
                       ),
                       Padding(
@@ -77,9 +77,9 @@ class VendasCountByStatusPainelComponent extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 18),
                   child: Row(
                     children: [
-                      const Icon(
+                      Icon(
                         Icons.circle,
-                        color: Color.fromRGBO(16, 48, 79, 1),
+                        color: Theme.of(context).primaryColor,
                         size: 10,
                       ),
                       Padding(

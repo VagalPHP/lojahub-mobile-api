@@ -13,11 +13,11 @@ class UltimasVendasComponent extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
+        Text(
           "Últimas Vendas (Do dia)",
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            color: Color.fromRGBO(16, 48, 79, 1),
+            color: Theme.of(context).primaryColor,
             fontSize: 18,
           ),
         ),

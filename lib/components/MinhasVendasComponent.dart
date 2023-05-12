@@ -17,13 +17,13 @@ class MinhasVendasComponent extends StatelessWidget {
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
+          children: [
             Icon(
               Icons.monetization_on_outlined,
               size: 40,
-              color: Color.fromRGBO(16, 48, 79, 1),
+              color: Theme.of(context).primaryColor,
             ),
-            Padding(
+            const Padding(
               padding: EdgeInsets.symmetric(horizontal: 15),
               child: Text(
                 "MINHAS",
@@ -37,7 +37,7 @@ class MinhasVendasComponent extends StatelessWidget {
             Text(
               "VENDAS",
               style: TextStyle(
-                color: Color.fromRGBO(16, 48, 79, 1),
+                color: Theme.of(context).primaryColor,
                 fontWeight: FontWeight.bold,
                 fontSize: 18,
               ),
