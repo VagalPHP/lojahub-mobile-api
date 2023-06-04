@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lojahub/blocs/events/sales_events.dart';
-import 'package:lojahub/blocs/states/sales_states.dart';
-import 'package:lojahub/models/sales/UserSalesModel.dart';
+import 'package:lojahub/presenter/blocs/sales/sales_events.dart';
+import 'package:lojahub/presenter/blocs/sales/sales_states.dart';
+import 'package:lojahub/infra/models/sales/UserSalesModel.dart';
 import 'package:lojahub/repositories/sales_repository.dart';
 
 class SalesOverviewBloc extends Bloc<SalesEvents, SalesState> {

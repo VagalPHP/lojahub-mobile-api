@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:http/http.dart';
-import 'package:lojahub/models/sales/UserSalesModel.dart';
+import 'package:lojahub/infra/models/sales/UserSalesModel.dart';
 
 class SalesRepository {
   final String _endpoint = 'http://10.0.2.2:8888/api/sales/overview';

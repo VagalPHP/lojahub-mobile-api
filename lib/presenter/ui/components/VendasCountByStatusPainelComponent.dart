@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../models/sales/UserSalesModel.dart';
+import '../../../infra/models/sales/UserSalesModel.dart';
 
 class VendasCountByStatusPainelComponent extends StatelessWidget {
   const VendasCountByStatusPainelComponent({

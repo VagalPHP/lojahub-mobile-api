@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lojahub/models/sales/UserSalesModel.dart';
+import 'package:lojahub/infra/models/sales/UserSalesModel.dart';
 
 class UltimasVendasComponent extends StatelessWidget {
   const UltimasVendasComponent({

@@ -8,7 +8,7 @@ class FiltroMarketplacesComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: 10),
+      padding: const EdgeInsets.only(top: 10),
       child: Row(
         children: [
           SizedBox(
@@ -20,12 +20,12 @@ class FiltroMarketplacesComponent extends StatelessWidget {
               itemCount: 8,
               itemBuilder: (BuildContext context, int index) {
                 return Padding(
-                  padding: EdgeInsets.only(
+                  padding: const EdgeInsets.only(
                     left: 20,
                   ),
                   child: CircleAvatar(
                     radius: 25,
-                    backgroundColor: Color.fromRGBO(16, 48, 79, 1),
+                    backgroundColor: const Color.fromRGBO(16, 48, 79, 1),
                     child: CircleAvatar(
                       backgroundColor: Colors.white,
                       radius: 24,

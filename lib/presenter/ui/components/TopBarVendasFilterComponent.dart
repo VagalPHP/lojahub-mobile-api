@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lojahub/blocs/events/sales_events.dart';
-import 'package:lojahub/blocs/sales/sales_overview_bloc.dart';
-import 'package:lojahub/models/sales/UserSalesModel.dart';
+import 'package:lojahub/presenter/blocs/sales/sales_events.dart';
+import 'package:lojahub/presenter/blocs/sales/sales_overview_bloc.dart';
+import 'package:lojahub/infra/models/sales/UserSalesModel.dart';
 
 @immutable
 class TopBarVendasFilterComponent extends StatelessWidget {

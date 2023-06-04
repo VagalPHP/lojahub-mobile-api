@@ -3,10 +3,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:lojahub/screens/DashboardScreen.dart';
+import 'package:lojahub/repositories/auth_repository.dart';
+import 'package:lojahub/presenter/screens/DashboardScreen.dart';
+import 'package:lojahub/presenter/screens/LoginPage.dart';
 
-import 'components/LogoHeaderComponent.dart';
-import 'repositories/sales_repository.dart';
+import 'presenter/ui/components/LogoHeaderComponent.dart';
+import 'domain/repositories/sales_repository.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,7 +28,7 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    initialization();
+    // initialization();
   }
 
   void initialization() async {
@@ -41,7 +43,7 @@ class _MyAppState extends State<MyApp> {
     print('ready in 1...');
     await Future.delayed(const Duration(seconds: 1));
     print('go!');
-    FlutterNativeSplash.remove();
+    // FlutterNativeSplash.remove();
   }
 
   @override
@@ -54,144 +56,16 @@ class _MyAppState extends State<MyApp> {
         visualDensity: VisualDensity.adaptivePlatformDensity,
         fontFamily: 'DM Sans',
       ),
-      home: RepositoryProvider(
-        create: (context) => SalesRepository(),
-        child: const LoginPage(),
-      ),
-    );
-  }
-}
-
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
-
-  @override
-  State<LoginPage> createState() => _LoginPageState();
-}
-
-class _LoginPageState extends State<LoginPage> {
-  bool hidePassword = true;
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 37),
-          child: Center(
-            child: Column(
-              children: [
-                LogoHeaderComponent(
-                  headerText: "Faça o seu login para acessar",
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 92),
-                  child: Column(
-                    children: [
-                      TextFormField(
-                        decoration: InputDecoration(
-                          hoverColor: Color.fromRGBO(113, 101, 227, 1),
-                          border: InputBorder.none,
-                          prefixIcon: Icon(Icons.email),
-                          hintText: "Email",
-                          hintStyle: TextStyle(
-                            color: Color.fromRGBO(44, 41, 72, 1),
-                            fontSize: 15,
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 5),
-                        child: TextFormField(
-                          obscureText: hidePassword,
-                          decoration: InputDecoration(
-                            hoverColor: Color.fromRGBO(113, 101, 227, 1),
-                            border: InputBorder.none,
-                            hintText: "Senha",
-                            hintStyle: TextStyle(
-                              color: Color.fromRGBO(44, 41, 72, 1),
-                              fontSize: 15,
-                            ),
-                            prefixIcon: Icon(Icons.lock_rounded),
-                            suffixIcon: IconButton(
-                              onPressed: () {
-                                setState(() {
-                                  hidePassword = !hidePassword;
-                                });
-                              },
-                              icon: Icon(Icons.remove_red_eye),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(top: 25),
-                        child: TextButton(
-                          onPressed: () {},
-                          style: TextButton.styleFrom(
-                            backgroundColor: Theme.of(context).primaryColor,
-                            fixedSize: Size(
-                                MediaQuery.of(context).size.width - 70, 60),
-                          ),
-                          child: Text(
-                            "Entrar",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 17,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 25),
-                        child: TextButton(
-                          onPressed: () {},
-                          child: Text(
-                            "Esqueceu a senha?",
-                            style: TextStyle(
-                                color: Color.fromRGBO(28, 25, 57, 0.8),
-                                fontSize: 15),
-                          ),
-                        ),
-                      ),
-                      Divider(
-                        color: Color.fromRGBO(170, 170, 170, 1),
-                        thickness: 1,
-                        indent: 70,
-                        endIndent: 70,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(top: 91),
-                        child: TextButton(
-                          onPressed: () {},
-                          style: TextButton.styleFrom(
-                            backgroundColor: Color.fromRGBO(239, 156, 0, 1),
-                            fixedSize: Size(
-                                MediaQuery.of(context).size.width - 70, 60),
-                          ),
-                          child: Text(
-                            "Cadastre-se",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 17,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
+      home: MultiRepositoryProvider(
+        providers: [
+          RepositoryProvider<SalesRepository>(
+            create: (context) => SalesRepository(),
           ),
-        ),
+          RepositoryProvider<AuthRepository>(
+            create: (context) => AuthRepository(),
+          ),
+        ],
+        child: const LoginPage(),
       ),
     );
   }

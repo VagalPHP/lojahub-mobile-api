@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lojahub/blocs/events/sales_events.dart';
-import 'package:lojahub/blocs/sales/sales_overview_bloc.dart';
-import 'package:lojahub/blocs/states/sales_states.dart';
-import 'package:lojahub/models/sales/UserSalesModel.dart';
+import 'package:lojahub/presenter/blocs/sales/sales_events.dart';
+import 'package:lojahub/presenter/blocs/sales/sales_overview_bloc.dart';
+import 'package:lojahub/presenter/blocs/sales/sales_states.dart';
+import 'package:lojahub/infra/models/sales/UserSalesModel.dart';
 import 'package:lojahub/repositories/sales_repository.dart';
 
-import '../components/MinhasVendasComponent.dart';
-import '../components/ParcialFinanceiraComponent.dart';
-import '../components/TopBarVendasFilterComponent.dart';
-import '../components/UltimasVendasComponent.dart';
-import '../components/VendasCountByStatusPainelComponent.dart';
+import '../ui/components/MinhasVendasComponent.dart';
+import '../ui/components/ParcialFinanceiraComponent.dart';
+import '../ui/components/TopBarVendasFilterComponent.dart';
+import '../ui/components/UltimasVendasComponent.dart';
+import '../ui/components/VendasCountByStatusPainelComponent.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
